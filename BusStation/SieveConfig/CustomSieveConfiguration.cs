@@ -17,10 +17,6 @@ namespace BusStation.SieveConfig
                 .CanFilter()
                 .HasName("busName");
 
-            /*mapper.Property<BusLineReadDTO>(p => p.BusLineUsers.Any(user => user.User.Roles.Contains("Driver")))
-                .CanFilter()
-                .HasName("driver");*/
-
             return mapper;
         }
     }

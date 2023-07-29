@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Sieve.Models;
 using Sieve.Services;
 using System.Configuration;
+using BusStation.Mediator.User.Queries;
+using BusStation.Mediator.Bus.Queries;
 
 //Add method getbyplatform or/and getbyLocation like SEARCH BY LOCATION(conatains character)//SOLVE IT WITH FILTGERING @=
 namespace BusStation.Controllers
@@ -58,6 +60,26 @@ namespace BusStation.Controllers
             var result = await _mediator.Send(new GetAllNumbersOfPlatformsQuery());
             return Ok(result);
         }
+        //[Authorize(Roles = "Admin,CounterWorker")]
+        [HttpGet("get-data-for-busLine-edit-page")]
+        public async Task<ActionResult<BusLineEditDataDTO>> GetDataForEditPage([FromQuery]int? busLineId)
+        {
+            BusLineReadDTO busLine =new();
+
+            if (busLineId!=null)
+            {
+                 busLine = await _mediator.Send(new GetBusLineByIdQuery((int)busLineId));
+            }
+
+            var buses = await _mediator.Send(new GetBusListQuery());
+            var goodBuses = buses.Where(b=>b.DrivingCondition=true).ToList();
+            var drivers = await _mediator.Send(new GetDriversQuery());
+            var conductors = await _mediator.Send(new GetConductorsQuery());
+
+            var result = new BusLineEditDataDTO(busLine,goodBuses, drivers, conductors);
+            return Ok(result);
+        }
+
 
         //[Authorize(Roles = "Admin,CounterWorker")]
         [HttpPost]

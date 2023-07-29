@@ -44,23 +44,23 @@ namespace BusStation.Controllers
             var result = await _mediator.Send(new GetEmployeeByIdQuery(employeeId));
             return result;
         }
-        [Authorize(Roles = "Admin")]
 
+        /*[Authorize(Roles = "Admin")]
         [HttpGet("drivers")]
         public async Task<IActionResult> GetDrivers()
         {
             var result = await _mediator.Send(new GetDriversQuery());
             return Ok(result);
         }
-        [Authorize(Roles = "Admin")]
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("conductors")]
         public async Task<IActionResult> GetConductors()
         {
             var result = await _mediator.Send(new GetConductorsQuery());
             return Ok(result);
         }
-
+        */
         [Authorize(Roles = "Admin")]
         [HttpGet("get-events")]
         public async Task<IActionResult> GetEventsForAdmin([FromQuery] SieveModel sieveModel)
