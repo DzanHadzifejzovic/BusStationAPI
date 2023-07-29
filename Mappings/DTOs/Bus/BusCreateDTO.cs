@@ -1,0 +1,24 @@
+﻿using Data.CustomDataAnnotation;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Mappings.DTOs.Bus
+{
+    public class BusCreateDTO
+    {
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public int NumberOfBus { get; set; }
+        [YearRange(1990, ErrorMessage = "Please enter a valid year of manufacture")]
+        public int YearOfManufacture { get; set; }
+        [Required]
+        public int NumberOfSeats { get; set; }
+        public bool HasAirConditioning { get; set; }
+        public bool HasTV { get; set; }
+    }
+}
