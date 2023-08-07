@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Mappings.DTOs.BusLine
 {
@@ -12,7 +7,6 @@ namespace Mappings.DTOs.BusLine
         [Required]
         public int NumberOfPlatform { get; set; }
         [Required]
-        //like this Sjenica-Novi Pazar-Pristina
         public string RoadRoute { get; set; }
         [Required]
         public DateTime DepartureTime { get; set; }

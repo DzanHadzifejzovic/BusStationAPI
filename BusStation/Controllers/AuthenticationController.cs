@@ -1,5 +1,4 @@
-﻿using BusinessLogic.Interfaces;
-using BusStation.Mediator.Authentication.Commands;
+﻿using BusStation.Mediator.Authentication.Commands;
 using BusStation.Mediator.Authentication.Queries;
 using BusStation.Mediator.User.Queries;
 using Data.Models;
@@ -8,7 +7,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace BusStation.Controllers
 {
     [Route("api/[controller]")]
@@ -16,13 +14,9 @@ namespace BusStation.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IAuthenticationService _authenticationService;
-
-        public AuthenticationController(IMediator mediator,
-                        IAuthenticationService refreshTokenRepository)
+        public AuthenticationController(IMediator mediator)
         {
             _mediator = mediator;
-            _authenticationService = refreshTokenRepository;
         }
 
 

@@ -1,5 +1,4 @@
-﻿using Mappings.DTOs.BaseUser;
-using Mappings.DTOs.BusLine;
+﻿using Mappings.DTOs.BusLine;
 using Microsoft.Extensions.Options;
 using Sieve.Models;
 using Sieve.Services;

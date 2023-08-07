@@ -82,7 +82,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 //builder.Services.AddSwaggerGen();
-//for add Authentication in swagger
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -103,7 +103,7 @@ builder.Services.AddCors(options =>
         builder.WithOrigins("http://localhost:3000")
                .AllowAnyHeader()
                .AllowAnyMethod()
-               .AllowCredentials(); // Allow credentials (cookies, authorization headers, etc.)
+               .AllowCredentials();
     });
 });
 
@@ -121,14 +121,6 @@ app.UseSerilogRequestLogging();
 
 
 app.UseCors();
-
-/*app.UseCors(opt =>
-{
-    opt.AllowAnyOrigin()
-       .AllowAnyMethod()
-       .AllowAnyHeader();
-});*/
-
 
 app.UseRouting();
 app.UseAuthentication();

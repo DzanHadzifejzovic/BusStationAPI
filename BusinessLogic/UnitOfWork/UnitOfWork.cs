@@ -4,7 +4,6 @@ using BusinessLogic.Services;
 using Data;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 
 namespace BusinessLogic.UnitOfWork
 {

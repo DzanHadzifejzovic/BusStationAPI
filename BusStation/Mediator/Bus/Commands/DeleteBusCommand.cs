@@ -1,5 +1,4 @@
-﻿
-using MediatR;
+﻿using MediatR;
 
 namespace BusStation.Mediator.Bus.Commands
 {

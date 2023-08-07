@@ -2,10 +2,7 @@
 using BusinessLogic.UnitOfWork;
 using BusStation.Mediator.BusLine.Queries;
 using Data.Models;
-using Mappings.DTOs.BaseUser;
-using Mappings.DTOs.Bus;
 using Mappings.DTOs.BusLine;
-
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

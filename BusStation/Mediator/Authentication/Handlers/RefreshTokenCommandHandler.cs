@@ -3,7 +3,6 @@ using BusStation.Mediator.Authentication.Commands;
 using Data.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace BusStation.Mediator.Authentication.Handlers
@@ -24,9 +23,7 @@ namespace BusStation.Mediator.Authentication.Handlers
             {
                 throw new Exception("Invalid client request");
             }
-
             string? accessToken = request.tokenModel.AccessToken;
-            //string? refreshToken = request.tokenModel.RefreshToken;
 
             var principal = _authenticationService.GetPrincipalFromExpiredToken(accessToken);
             if (principal == null)
@@ -38,18 +35,13 @@ namespace BusStation.Mediator.Authentication.Handlers
 
             var user = await _userManager.FindByNameAsync(username);
 
-            if (user == null  || user.RefreshTokenExpiryTime <= DateTime.Now) // || user.RefreshToken != refreshToken
+            if (user == null  || user.RefreshTokenExpiryTime <= DateTime.Now)
             {
                 throw new Exception("Invalid access token or refresh token");
             }
 
             var newAccessToken = _authenticationService.GenerateToken(principal.Claims.ToList());
 
-            //I don't need to input current refresh token to get new
-            /*var newRefreshToken = _authenticationService.GenerateRefreshToken();
-            user.RefreshToken = newRefreshToken;
-            await _userManager.UpdateAsync(user);*/
-            
             TokenModel tokenModel = new TokenModel
             {
                 AccessToken = new JwtSecurityTokenHandler().WriteToken(newAccessToken)

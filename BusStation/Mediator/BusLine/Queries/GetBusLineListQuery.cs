@@ -3,5 +3,5 @@ using MediatR;
 
 namespace BusStation.Mediator.BusLine.Queries
 {
-    public record GetBusLineListQuery() : IRequest<BusLineWithCountReadDTO>;
+    public record GetBusLineListQuery : IRequest<BusLineWithCountReadDTO>;
 }

@@ -45,39 +45,10 @@ namespace BusStation.Controllers
             return result;
         }
 
-        /*[Authorize(Roles = "Admin")]
-        [HttpGet("drivers")]
-        public async Task<IActionResult> GetDrivers()
-        {
-            var result = await _mediator.Send(new GetDriversQuery());
-            return Ok(result);
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpGet("conductors")]
-        public async Task<IActionResult> GetConductors()
-        {
-            var result = await _mediator.Send(new GetConductorsQuery());
-            return Ok(result);
-        }
-        */
         [Authorize(Roles = "Admin")]
         [HttpGet("get-events")]
         public async Task<IActionResult> GetEventsForAdmin([FromQuery] SieveModel sieveModel)
         {
-
-            /*var apiUrl = _configuration.GetValue<string>("Serilog:WriteTo:3:Args:serverUrl");
-            var apiKey = _configuration.GetValue<string>("Serilog:WriteTo:3:Args:apiKey");
-
-            var connection = new SeqConnection(apiUrl, apiKey);
-
-            var installedApps = await connection.Events.ListAsync(
-                    filter: "RequestMethod=='PATCH' or RequestMethod=='DELETE'",
-                    render: true
-                    );//,count: 20
-
-            return Ok(installedApps);*/
-
             var apiUrl = _configuration.GetValue<string>("Serilog:WriteTo:3:Args:serverUrl");
             var apiKey = _configuration.GetValue<string>("Serilog:WriteTo:3:Args:apiKey");
 

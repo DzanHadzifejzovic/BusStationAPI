@@ -3,5 +3,5 @@ using MediatR;
 
 namespace BusStation.Mediator.User.Queries
 {
-    public record GetConductorsQuery() : IRequest<List<BaseUserReadDTO>>;
+    public record GetConductorsQuery : IRequest<List<BaseUserReadDTO>>;
 }

@@ -5,7 +5,6 @@ using Data.Models;
 using Mappings.DTOs.BaseUser;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace BusStation.Mediator.User.Handlers
 {

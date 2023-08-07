@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BusinessLogic.UnitOfWork;
+﻿using BusinessLogic.UnitOfWork;
 using BusStation.Mediator.Bus.Commands;
 using MediatR;
 

@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using BusinessLogic.Interfaces;
+﻿using BusinessLogic.Interfaces;
 using BusinessLogic.UnitOfWork;
-using Data;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,15 +16,11 @@ namespace BusinessLogic.Services
         private readonly UserManager<BaseUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
-
-        private readonly DataContext context;
-
-        public UserService(UserManager<BaseUser> userManager,IUnitOfWork unitOfWork,IConfiguration configuration, DataContext context)
+        public UserService(UserManager<BaseUser> userManager,IUnitOfWork unitOfWork,IConfiguration configuration)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
             _configuration = configuration;
-            this.context = context;
         }
 
         public async Task<List<BaseUser>> GetWorkers()

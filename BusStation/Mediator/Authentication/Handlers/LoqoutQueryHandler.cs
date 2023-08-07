@@ -3,7 +3,6 @@ using BusStation.Mediator.Authentication.Queries;
 using Data.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BusStation.Mediator.Authentication.Handlers
 {

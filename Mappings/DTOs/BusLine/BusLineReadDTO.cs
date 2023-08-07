@@ -1,13 +1,5 @@
-﻿using Data.Models;
-using Mappings.DTOs.BaseUser;
-using Mappings.DTOs.Bus;
+﻿using Mappings.DTOs.Bus;
 using Sieve.Attributes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mappings.DTOs.BusLine
 {

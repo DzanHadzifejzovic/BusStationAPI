@@ -7,11 +7,9 @@ using BusStation.Mediator.BusLine.Commands;
 using Microsoft.AspNetCore.Authorization;
 using Sieve.Models;
 using Sieve.Services;
-using System.Configuration;
 using BusStation.Mediator.User.Queries;
 using BusStation.Mediator.Bus.Queries;
 
-//Add method getbyplatform or/and getbyLocation like SEARCH BY LOCATION(conatains character)//SOLVE IT WITH FILTGERING @=
 namespace BusStation.Controllers
 {
     [Route("api/[controller]")]
@@ -26,9 +24,10 @@ namespace BusStation.Controllers
             _sieveProcessor = sieveProcessor;
         }
 
+        //upitno
         //[Authorize(Roles = "Admin,CounterWorker,Driver,Conducotr,Buyer")] //for Buyer dont show info for workers
         [HttpGet("bus-lines")]
-        public async Task<IActionResult> Get([FromQuery] SieveModel sieveModel) //Task<ActionResult<List<BusLineReadDTO>>>
+        public async Task<IActionResult> Get([FromQuery] SieveModel sieveModel) 
         { 
             var result = await _mediator.Send(new GetBusLineListQuery());
             var sieved =  _sieveProcessor.Apply(sieveModel, result.BusLines.AsQueryable());
@@ -60,7 +59,7 @@ namespace BusStation.Controllers
             var result = await _mediator.Send(new GetAllNumbersOfPlatformsQuery());
             return Ok(result);
         }
-        //[Authorize(Roles = "Admin,CounterWorker")]
+        [Authorize(Roles = "Admin,CounterWorker")]
         [HttpGet("get-data-for-busLine-edit-page")]
         public async Task<ActionResult<BusLineEditDataDTO>> GetDataForEditPage([FromQuery]int? busLineId)
         {
@@ -98,40 +97,13 @@ namespace BusStation.Controllers
             return Ok(result);//return true if it's deleted
         }
 
-        //[Authorize(Roles ="Admin,Driver")]
-        [HttpPatch("change-departure-time")]
-        public async Task<ActionResult<string>> UpdateDepartureTime(int busLineId,DateTime dateTime)
+        [Authorize(Roles = "Admin,CounterWorker")]
+        [HttpPatch("edit-busLine")]
+        public async Task<ActionResult<string>> UpdateDepartureTime([FromBody]BusLineInputForEditDTO editDTO)
         {
-            var result = await _mediator.Send(new ChangeDepartureTimeCommand(busLineId,dateTime));
+            var result = await _mediator.Send(new EditBusLineCommand(editDTO));
             return Ok(result);
         }
 
-        //[Authorize(Roles = "CounterWorker,Conductor")]
-        [HttpPatch("update-reserved-cards")]
-        public async Task<ActionResult<string>> UpdateNumberOfCards(int busLineId,int numOfCards)
-        {
-            var result = await _mediator.Send(new UpdateNumberOfReservedCardsCommand(busLineId, numOfCards));
-            return Ok(result);
-        }
-        //[Authorize(Roles = "CounterWorker,Conductor")]
-        [HttpPatch("update-bus-for-busLine")]
-        public async Task<ActionResult<string>> UpdateBusForBusLine(int busLineId, int busId)
-        {
-            var result = await _mediator.Send(new UpdateBusForBusLineCommand(busLineId, busId));
-            return Ok(result);
-        }
-
-        [HttpPatch("update-conductor-for-busLine")]
-        public async Task<ActionResult<string>> UpdateConductorForBusLine(int busLineId, string oldConductorId, string conductorId)
-        {
-            var result = await _mediator.Send(new ChangeConductorForBusLineCommand(busLineId, oldConductorId,conductorId));
-            return Ok(result);
-        }
-        [HttpPatch("update-driver-for-busLine")]
-        public async Task<ActionResult<string>> UpdateDriverForBusLine(int busLineId, string oldDriverId, string driverId)
-        {
-            var result = await _mediator.Send(new ChangeDriverForBusLineCommand(busLineId, oldDriverId, driverId));
-            return Ok(result);
-        }     
     }
 }

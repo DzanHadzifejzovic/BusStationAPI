@@ -2,8 +2,6 @@
 using BusinessLogic.UnitOfWork;
 using BusStation.Mediator.BusLine.Queries;
 using Data.Models;
-using Mappings.DTOs.BaseUser;
-using Mappings.DTOs.Bus;
 using Mappings.DTOs.BusLine;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -35,35 +33,6 @@ namespace BusStation.Mediator.BusLine.Handlers
             }
             return busLineDTO;
         }
-        /*
-            var busLineDTO = new BusLineReadDTO
-            {
-                Id = busLine.Id,
-                RoadRoute = busLine.RoadRoute,
-                DepartureTime = busLine.DepartureTime,
-                CardPrice = busLine.CardPrice,
-                NumberOfPlatform=busLine.NumberOfPlatform,
-                Delay = busLine.Delay,
-                NumberOfReservedCards=busLine.NumberOfReservedCards,
-                BusId = busLine.BusId,
-                Bus = _mapper.Map<BusReadDTO>(busLine.Bus),
-                Users = busLine.BusLineUsers.Select(async blu =>
-                {
-                    var user = blu.User;
-                    var userRoles = await _userManager.GetRolesAsync(user);
-
-                    return new BaseUserReadDTO
-                    {
-                        Id = user.Id,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Country = user.Country,
-                        City = user.City,
-                        Address = user.Address,
-                        Roles = userRoles.ToList()
-                    };
-                }).Select(t => t.Result).ToList()
-            };
-            */
+        
     }
 }

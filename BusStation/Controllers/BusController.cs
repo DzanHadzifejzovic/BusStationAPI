@@ -1,13 +1,7 @@
-﻿using Data.Models;
-using BusinessLogic.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using BusinessLogic.UnitOfWork;
+﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using BusStation.Mediator.Bus.Queries;
 using Mappings.DTOs.Bus;
-using BusStation.Mediator.Bus.Handlers;
-using AutoMapper;
 using BusStation.Mediator.Bus.Commands;
 using Microsoft.AspNetCore.Authorization;
 

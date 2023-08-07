@@ -4,20 +4,21 @@ using MediatR;
 
 namespace BusStation.Mediator.BusLine.Handlers
 {
-    public class DeleteBusLineCommandHandler : IRequestHandler<DeleteBusLineCommand, bool>
+    public class EditBusLineCommandHandler : IRequestHandler<EditBusLineCommand,bool>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public DeleteBusLineCommandHandler(IUnitOfWork unitOfWork)
+
+        public EditBusLineCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<bool> Handle(DeleteBusLineCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(EditBusLineCommand request, CancellationToken cancellationToken)
         {
-            var busLine = await _unitOfWork.BusLineService.DeleteBusLine(request.busLineId);
+            var res = await _unitOfWork.BusLineService.EditBusLine(request.editDTO);
 
-            if (!busLine)
+            if (!res)
                 return false;
-            
+
             var IsSuccess = await _unitOfWork.SaveAsync() > 0;
             return IsSuccess;
         }

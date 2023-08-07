@@ -1,8 +1,7 @@
-﻿using Data.Models;
-using Mappings.DTOs.BaseUser;
+﻿using Mappings.DTOs.BaseUser;
 using MediatR;
 
 namespace BusStation.Mediator.User.Queries
 {
-    public record GetEmployeesQuery():IRequest<BaseUserWithCountReadDTO>;
+    public record GetEmployeesQuery : IRequest<BaseUserWithCountReadDTO>;
 }

@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using BusinessLogic.Interfaces;
-using BusinessLogic.UnitOfWork;
+﻿using BusinessLogic.Interfaces;
 using BusStation.Mediator.Authentication.Queries;
 using Data.Models;
 using Mappings.DTOs.Authentication;
@@ -13,16 +11,14 @@ namespace BusStation.Mediator.Authentication.Handlers
 {
     public class LoginQueryHandler : IRequestHandler<LoginQuery, LoginAndRegisterReturnModel>
     {
-        private readonly IMapper _mapper;
         private readonly IAuthenticationService _authenticationService;
 
         private readonly UserManager<BaseUser> _userManager;
         private readonly IConfiguration _configuration;
 
-        public LoginQueryHandler(IMapper mapper, IAuthenticationService authenticationService,
+        public LoginQueryHandler(IAuthenticationService authenticationService,
             UserManager<BaseUser> userManager,IConfiguration configuration)
         {
-            _mapper = mapper;
             _authenticationService = authenticationService;
             _userManager = userManager;
             _configuration = configuration;
