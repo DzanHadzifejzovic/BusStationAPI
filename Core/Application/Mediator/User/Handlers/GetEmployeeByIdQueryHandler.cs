@@ -28,7 +28,7 @@ namespace BusStation.Mediator.User.Handlers
                 return null;
             
             var result = _mapper.Map<BaseUserReadDTO>(emp);
-            //result.Roles = await _userManager.GetRolesAsync(emp);
+            result.Roles = await _userManager.GetRolesAsync(emp);
             return result;
         }
     }
