@@ -28,7 +28,7 @@ namespace BusStation.Mediator.User.Handlers
             var resultDTO = _mapper.Map<List<BaseUserReadDTO>>(users);
             foreach(var item in resultDTO)
             {
-                //item.Roles = await _userManager.GetRolesAsync(users.Find(l => l.Id == item.Id));
+                item.Roles = await _userManager.GetRolesAsync(users.Find(l => l.Id == item.Id));
             }
             int count = resultDTO.Count;  // Count from ef core   
             resultDTO = resultDTO.OrderBy(e => e.Roles.FirstOrDefault())
