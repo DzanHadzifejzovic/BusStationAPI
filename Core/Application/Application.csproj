@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mediator\Audit\Commands\" />
-    <Folder Include="Mediator\Audit\Handlers\" />
-    <Folder Include="Mediator\Audit\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.39" />
