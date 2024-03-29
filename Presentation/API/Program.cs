@@ -7,6 +7,7 @@ using Serilog;
 using Persistence.Interceptors;
 using Domain.Interfaces;
 using BusStation_API.Core.Domain.Entities;
+using Infrastructure.Mail;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<DataContext>(
            ).AddInterceptors(auditableInterceptor);
     });
 
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.ConfigureRepository();
 
 builder.Services.Configure<SieveOptions>(configuration.GetSection("Sieve"));
